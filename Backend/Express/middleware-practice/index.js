@@ -13,14 +13,23 @@ const users = [
 
 //Built-in middleware
 app.use(express.json()); //Passing JSON
+
 //Third-party middleware
-app.use(morgan("dev")); //logging
+// app.use(morgan("dev")); //logging
 
 //Custom middleware
-app.use((req, res, next) => {
-    const time = new Date().toLocaleTimeString();
-    console.log(`[${time}] ${req.method} ${req.url}`);
-    next();
+// app.use((req, res, next) => {
+//     const time = new Date().toLocaleTimeString();
+//     console.log(`[${time}] ${req.method} ${req.url}`);
+//     next();
+// });
+
+app.get("/", (req, res) => {
+    res.json({ message: "Welcome to the Middleware Practice API" });
+});
+app.post("/", (req, res) => {
+    console.log(req.body);
+    res.json({ message: "Welcome to the Middleware Practice API" });
 });
 
 //Public routes /users
