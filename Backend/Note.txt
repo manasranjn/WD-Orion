@@ -357,7 +357,7 @@ app.set("views", path.join(__dirname,"views"))
 -Once configure by using the above syntax express will automatically look for the template inside the views folder and ejs will render them when res.render() is called.
 
 #SERVER-SIDE RENDERING WITH Ejs:-
------------------------------------
+---------------------------------
 -With server-side rendering a route handler call res.render('templateName,{data}) and ejs combine the template with the data to produce complete html page on the server.
 -Ejs handle dynamic html views while express.static() serve supoorting assest like css and javascript use by the views.
--The most common structure for view folder for ejs template and public folder for static file.
+-The most common structure is view folder for ejs template and public folder for static file.

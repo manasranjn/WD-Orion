@@ -2,31 +2,31 @@ const express = require("express");
 const path = require("path");
 const expressLayouts = require("express-ejs-layouts");
 
-//instance express
+//?instance express
 const app = express();
 
-//set EJS as the view engine
+//!set EJS as the view engine
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-//Use express ejs layouts
+//?Use express ejs layouts
 app.use(expressLayouts);
-app.set("layout", "layout");
+app.set("layout", "layout.ejs");
 
-//Middlewares
+//!Middlewares
 app.use(express.static("public"));
-app.use(express.urlencoded({ extended: true })); //pass data from a form
+app.use(express.urlencoded({ extended: true })); //*pass data from a form
 
-//Routes
+//?Routes
+app.get("/about-us", (req, res) => {
+    res.render("about-us.ejs", {
+        title: "About Us",
+    });
+})
+
 app.get("/", (req, res) => {
     res.render("index", {
         title: "This is Home Page",
-    });
-});
-
-app.get("/about", (req, res) => {
-    res.render("about", {
-        title: "About Page",
     });
 });
 
@@ -37,7 +37,7 @@ app.get("/variables", (req, res) => {
             name: "ABCD",
             age: 25,
             email: "abcd@gmail.com",
-            isActive: true,
+            isActive: false,
         },
     });
 });
@@ -47,8 +47,8 @@ app.get("/conditionals", (req, res) => {
         title: "EJS Conditionals",
         user: {
             isLoggedIn: true,
-            isAdmin: true,
-            hasItems: false,
+            isAdmin: false,
+            hasItems: true,
         },
     });
 });
@@ -75,6 +75,8 @@ app.post("/contact", (req, res) => {
         formData: req.body,
     });
 });
+
+
 //Start the server
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, console.log(`Server is running on the port ${PORT}`));
