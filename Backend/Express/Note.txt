@@ -341,7 +341,6 @@ Q.1 What is the role of a middleware?
 -It helps us to organised routes into separates files like /users, /products, /login so large app stay clean, reusable and easy to maintain.
 -Express.Router() create a separate router object or variable that can have its own routes and MiddleWare similar to the main app.
 
-
 #STATIC FILES IN EXPRESS:-
 -Express provide a built-in MiddleWare express.static() to serve static file from a folder such as public or assest.
 -Static file in express are files like image, css, client side javascript, pdf, etc that are sent to the browser without any server-side processing.
