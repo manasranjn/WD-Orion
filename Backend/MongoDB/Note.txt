@@ -60,15 +60,15 @@ e.g:- const User = mongoose.model("User", userSchema);
 
 
 Common methods of mongoose:-
-----------------------------
-->Mongoose methods are the function provide a mongoose model and documnet to perform operation like CRUD validation aganist mongoDB .
-->this methods lets such ineract with collection in an object oriented way instead of writing raw code.
+--------------------------
+->Mongoose methods are the function provide a mongoose model and documnet to perform operation like CRUD validation aganist mongoDB.
+->These methods lets such ineract with collection in an object oriented way instead of writing raw code.
 
 Types of mongoose methods:-
 ---------------------------
-1.Static methods:-it is also called as model methods this method called on the model itself and usually operate on many document.
+1.Static methods:-It is also called as model methods, this method called on the model itself and usually operate on many document.
 e.g: user.find()
-2.Instance methods:-This is also known as documnet called on a specific documnet instance and operate on that one document.
+2.Instance methods:-This is also known as documnet, called on a specific documnet instance and operate on that one document.
 e.g: user.save()
 
 ## Static methods:-
@@ -85,12 +85,11 @@ e.g: user.save()
 ## Some Instance methods:-
 (i)doc.save():it save new or modify doc and runs validation and middleware.
 (ii)doc.remove()/deleteOne():it delete a specific document inside a collection.
-(iii)doc.validate(),doc.validateSync():-it runs schema validation without saving .
+(iii)doc.validate(), doc.validateSync():-it runs schema validation without saving .
 (iv)doc.toObject()/doc.toJSON():-converts a mongoose document to a palne javascript object for response
 
 //How to create and get the mongo db connection string?
-
--The mongo db connection string in uri used by our app to connect to mongo db .
+-The mongo db connection string in uri used by our app to connect to mongoDB.
 -We can create and get the connection  string in two ways:
 1)From mongo db atlast:-
 -Create a project and a cluster atlas that had a database user and a ip access then click "connect your application" and select the drive method .
