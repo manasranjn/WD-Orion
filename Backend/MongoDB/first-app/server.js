@@ -9,14 +9,52 @@ const app = express();
 
 
 //? Schema
+// const productSchema = new mongoose.Schema({
+//     name: String,
+//     price: Number,
+//     description: String,
+//     rating: Number
+// })
+
 const productSchema = new mongoose.Schema({
-    name: String,
-    price: Number,
-    description: String,
-    rating: Number
+    name: {
+        type: String,
+        required: true,
+        minlength: 10,
+        maxlength: 50
+    },
+    price: {
+        type: Number,
+        min: 100,
+        max: 100000
+    },
+    description: {
+        type: String,
+        minlength: 50
+    },
+    rating: {
+        type: Number,
+        required: true,
+        max: 5
+    }
 })
 
+
 const Product = mongoose.model("Product", productSchema);
+
+Product.create({
+    name: "Samsung S26 Ultra ",
+    price: 50000,
+    description: "The latest Samsung flagship phone with a stunning display and powerful performance.",
+    rating: 4.5
+}).then((res) => {
+    console.log("Product created");
+}).catch((err) => {
+    console.log("Failed to create");
+})
+
+
+
 
 //? Create a new product
 const product1 = new Product({
@@ -28,7 +66,7 @@ const product1 = new Product({
 // product1.save()
 
 // Product.create({
-//     name: "Samsung Galaxy S23 Ultra",
+//     name: 10,
 //     price: 1199,
 //     description: "The latest Samsung flagship phone with a stunning display and powerful performance.",
 //     rating: 4.7
@@ -81,12 +119,12 @@ const product1 = new Product({
 //     }).catch((err) => {
 //         console.log(err);
 //     })
-Product.deleteOne({ name: "Samsung Galaxy S23 Ultra" })
-    .then((res) => {
-        console.log("Product Deleted");
-    }).catch((err) => {
-        console.log(err);
-    })
+// Product.deleteOne({ name: "Samsung Galaxy S23 Ultra" })
+//     .then((res) => {
+//         console.log("Product Deleted");
+//     }).catch((err) => {
+//         console.log(err);
+//     })
 
 
 mongoose.connect(process.env.MONGO_URL)
