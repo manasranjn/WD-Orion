@@ -1,5 +1,5 @@
 import express from "express"
-import mongoose from "mongoose"
+import mongoose, { mongo } from "mongoose"
 import dotenv from "dotenv"
 
 dotenv.config()
@@ -14,76 +14,42 @@ mongoose.connect(process.env.MONGO_URL)
         console.log("Connection Failed");
     })
 
-const brandSchema = new mongoose.Schema({
-    name: String,
-    established: Number,
-    location: String
-}, {
-    timestamps: true
-})
-
-const Brand = mongoose.model("Brand", brandSchema)
-
-const laptopSchema = new mongoose.Schema({
-    model: String,
-    price: String,
-    ram: {
-        type: String,
-        enum: ['8GB', '16GB', '32GB']
-    },
-    brand: {
+const sellerSchema = new mongoose.Schema({
+    name: String, email: String, products: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Brand"
-    }
-}, {
-    timestamps: true
-})
+        ref: "Product"
+    }]
+}, { timestamps: true })
 
-const Laptop = mongoose.model("Laptop", laptopSchema)
+const Seller = mongoose.model("Seller", sellerSchema)
 
-// Brand.create({
-//     name: "Dell",
-//     established: 2002,
-//     location: "Japan"
-// }).then((res)=>{
-//     console.log("Brand Created");
-// }).catch((err)=>{
-//     console.log(err.message);
-// })
+const productSchema = new mongoose.Schema({
+    name: String, description: String, price: Number
+}, { timestamps: true })
 
-// Laptop.create({
-//     model: "Aspire",
-//     price: 42000,
-//     ram: "16GB",
-//     brand: "69da1ed1c7125d7ef59783ee"
+const Product = mongoose.model("Product", productSchema)
+
+// Product.create({
+//     name: "Tablet", description: "New mobile", price: 25000
 // }).then((res) => {
-//     console.log("Laptop Created");
+//     console.log("Product created");
 // }).catch((err) => {
-//     console.log(err.message);
+//     console.log("Failed to create product");
+// })
+
+// Seller.create({
+//     name: "Samsung", email: "samsung.gmail.com",
+//     products: ["69dc99c79a2f53b7a0607932", "69dc99d3d6d307c3d0608dbf", "69dc99d86a6a7396a286ea54"]
+// }).then((res) => {
+//     console.log("Product created");
+// }).catch((err) => {
+//     console.log("Failed to create product");
 // })
 
 
-// Laptop.find().populate('brand')
-//     .then((res) => {
-//         console.log(res);
-//     }).catch((err) => {
-//         console.log(err.message);
-// //     })
-
-// Laptop.find().populate({ path: 'brand', select: "name" })
-//     .then((res) => {
-//         console.log(res);
-//     }).catch((err) => {
-//         console.log(err.message);
-//     })
-
-Laptop.find().populate({ path: 'brand', select: "-name" })
-    .then((res) => {
-        console.log(res);
-    }).catch((err) => {
-        console.log(err.message);
-
-    })
+Seller.find().populate("products")
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err.message))
 
 
 app.listen(() => {
