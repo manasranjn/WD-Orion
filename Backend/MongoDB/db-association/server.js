@@ -14,43 +14,88 @@ mongoose.connect(process.env.MONGO_URL)
         console.log("Connection Failed");
     })
 
-const sellerSchema = new mongoose.Schema({
-    name: String, email: String, products: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Product"
-    }]
+//? Course Schema
+const courseSchema = new mongoose.Schema({
+    name: String,
+    description: String,
+    students: [{ type: mongoose.Schema.Types.ObjectId, ref: "Student" }]
 }, { timestamps: true })
 
-const Seller = mongoose.model("Seller", sellerSchema)
+const Course = mongoose.model("Course", courseSchema)
 
-const productSchema = new mongoose.Schema({
-    name: String, description: String, price: Number
-}, { timestamps: true })
+//? Student Schema
+const studentSchema = new mongoose.Schema({
+    name: String, age: Number
+    ,
+    courses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Course" }]
+})
 
-const Product = mongoose.model("Product", productSchema)
-
-// Product.create({
-//     name: "Tablet", description: "New mobile", price: 25000
-// }).then((res) => {
-//     console.log("Product created");
-// }).catch((err) => {
-//     console.log("Failed to create product");
-// })
-
-// Seller.create({
-//     name: "Samsung", email: "samsung.gmail.com",
-//     products: ["69dc99c79a2f53b7a0607932", "69dc99d3d6d307c3d0608dbf", "69dc99d86a6a7396a286ea54"]
-// }).then((res) => {
-//     console.log("Product created");
-// }).catch((err) => {
-//     console.log("Failed to create product");
-// })
+const Student = mongoose.model("Student", studentSchema)
 
 
-Seller.find().populate("products")
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err.message))
+//! Create Course
+// Course.create({
+//     name: "Frontend Complete Guide",
+//     description: "Complete guide to frontend development"
+// }).then((res) => console.log("Course Created")
+// ).catch((err) => console.log(err.message)
+// )
 
+
+//! Create Student
+// Student.create({
+//     name: "Smith",
+//     age: 25,
+//     courses: ["69df2148add5c875bde1c99b"] //! Course ID
+// }).then((res) => console.log("Course Created")
+// ).catch((err) => console.log(err.message)
+// )
+
+
+// Course.find()
+//     .then((res) => {
+//         console.log(res);
+//     }).catch((err) => {
+//         console.log(err.message);
+//     })
+
+
+
+// Student.find().populate("courses")
+//     .then((res) => {
+//         console.log(res);
+//         console.log(res[0].courses);
+//     }).catch((err) => {
+//         console.log(err.message);
+//     })
+
+
+// Student.findById("69df224137156217a4305d29").populate("courses")
+//     .then((res) => {
+//         console.log(res);
+//     }).catch((err) => {
+//         console.log(err.message);
+//     })
+
+
+//? Update Course
+Course.updateMany({
+    _id: { $in: ['69df20ef9a787c79df4a9f10', '69df2148add5c875bde1c99b'] }
+},
+    { $push: { students: "69df21d7318a3d39a8985914" } }) //! Student ID
+    .then((res) => {
+        console.log(res);
+    }).catch((err) => {
+        console.log(err.message);
+    })
+
+
+// Course.findById("69df20ef9a787c79df4a9f10").populate("students")
+//     .then((res) => {
+//         console.log(res);
+//     }).catch((err) => {
+//         console.log(err.message);
+//     })
 
 app.listen(() => {
     console.log("Server Running");
