@@ -324,3 +324,80 @@ e.g:- const enrollmentSchema = new mongoose.Schema({
   studentId: { type: mongoose.Schema.Types.ObjectId, ref: "Student" },
   courseId: { type: mongoose.Schema.Types.ObjectId, ref: "Course" }
 });
+
+populate()
+==========
+-Used to fetch referenced data from another collection.
+-Replaces ObjectId with actual document.
+e.g:- Post.find()
+  .populate("userId")
+-With selected fields
+Post.find()
+  .populate("userId", "name email")
+
+Design Pattern
+==============
+-A design pattern is a reusable solution to commonly occurring problems in software design.
+-It is not code, but a template or blueprint
+-It helps in writing clean, reusable, and maintainable code
+-It provides standard best practices
+
+Why use design patterns?
+-Improves code readability
+-Makes application easy to maintain
+-Reduces code duplication
+-Helps in team collaboration
+-Makes debugging and scaling easier
+
+MVC Design Pattern
+==================
+-MVC stands for:
+    M – Model
+    V – View
+    C – Controller
+-MVC is an architectural design pattern used to separate application logic into different layers.
+
+## What is View?
+-Handles UI or presentation
+-Displays data to the user
+-Does not contain business logic
+-e.g:-React Components, EJS templates
+
+## What is Controller?
+-Acts as a bridge between Model and View
+-Receives request from user
+-Calls model methods
+-Sends response back to view
+e.g:- exports.getUsers = async (req, res) => {
+  const users = await User.find();
+  res.json(users);
+};
+
+
+How MVC Works
+=============
+Step-by-step flow:
+1. User sends a request (browser / frontend)
+2. Request goes to Controller
+3. Controller processes the request
+4. Controller calls Model
+5. Model interacts with database
+6. Model returns data to Controller
+7. Controller sends data to View
+8. View displays data to user
+
+How to Integrate MVC Design Pattern
+===================================
+-MVC can be implemented in Node.js + Express projects as follows:
+Project:-
+1.models    
+    All the models should present here
+
+2.controllers
+    All the controllers should present here
+
+3. routes
+    All the routes should present here
+
+4. views/frontend
+    All the frontend pages should present here

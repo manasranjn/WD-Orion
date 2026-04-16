@@ -14,90 +14,68 @@ mongoose.connect(process.env.MONGO_URL)
         console.log("Connection Failed");
     })
 
-//? Course Schema
-const courseSchema = new mongoose.Schema({
-    name: String,
-    description: String,
-    students: [{ type: mongoose.Schema.Types.ObjectId, ref: "Student" }]
+const subjectSchema = new mongoose.Schema({
+    title: String
 }, { timestamps: true })
 
-const Course = mongoose.model("Course", courseSchema)
+const Subject = mongoose.model("Subject", subjectSchema)
 
-//? Student Schema
-const studentSchema = new mongoose.Schema({
+const learnerSchema = new mongoose.Schema({
     name: String, age: Number
-    ,
-    courses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Course" }]
-})
+}, { timestamps: true })
 
-const Student = mongoose.model("Student", studentSchema)
+const Learner = mongoose.model("Learner", learnerSchema)
 
+const enrollmentSchema = new mongoose.Schema({
+    learner: { type: mongoose.Schema.Types.ObjectId, ref: "Learner" },
+    subject: { type: mongoose.Schema.Types.ObjectId, ref: "Subject" },
+    status: { type: String, enum: ["enrolled", "completed", "dropped"], default: "enrolled" },
+    enrolledAt: { type: Date, default: Date.now() }
+}, { timestamps: true })
 
-//! Create Course
-// Course.create({
-//     name: "Frontend Complete Guide",
-//     description: "Complete guide to frontend development"
-// }).then((res) => console.log("Course Created")
-// ).catch((err) => console.log(err.message)
-// )
+const Enrollment = mongoose.model("Enrollment", enrollmentSchema)
 
 
-//! Create Student
-// Student.create({
-//     name: "Smith",
-//     age: 25,
-//     courses: ["69df2148add5c875bde1c99b"] //! Course ID
-// }).then((res) => console.log("Course Created")
-// ).catch((err) => console.log(err.message)
-// )
-
-
-// Course.find()
-//     .then((res) => {
-//         console.log(res);
-//     }).catch((err) => {
-//         console.log(err.message);
+//! create Students
+// Learner.create({ name: "Jane Smith", age: 35 })
+//     .then((student) => {
+//         console.log("Student created:", student);
 //     })
+//     .catch((err) => {
+//         console.error("Error creating student:", err);
+//     });
 
-
-
-// Student.find().populate("courses")
-//     .then((res) => {
-//         console.log(res);
-//         console.log(res[0].courses);
-//     }).catch((err) => {
-//         console.log(err.message);
+//?! create Subjects
+// Subject.create({ title: "Chemistry  " })
+//     .then((subject) => {
+//         console.log("Subject created:", subject);
 //     })
+//     .catch((err) => {
+//         console.error("Error creating subject:", err);
+//     });
+
+//! create Enrollment
+// Enrollment.create({
+//     learner: "69e06cbfaf669c64d8970ed7",
+//     subject: "69e06dac43e7a25cfe180898"
+// }).then((enrollment) => {
+//     console.log("Enrollment created:", enrollment);
+// }).catch((err) => {
+//     console.error("Error creating enrollment:", err);
+// });
 
 
-// Student.findById("69df224137156217a4305d29").populate("courses")
-//     .then((res) => {
-//         console.log(res);
-//     }).catch((err) => {
-//         console.log(err.message);
-//     })
-
-
-//? Update Course
-Course.updateMany({
-    _id: { $in: ['69df20ef9a787c79df4a9f10', '69df2148add5c875bde1c99b'] }
-},
-    { $push: { students: "69df21d7318a3d39a8985914" } }) //! Student ID
-    .then((res) => {
-        console.log(res);
+//? Fetch Enrollments with Learner and Subject details
+Enrollment.find().populate("learner", "name").populate("subject", "title") // Populate learner details (name and age) and subject details (title)
+    .then((enrollments) => {
+        console.log(enrollments);
     }).catch((err) => {
-        console.log(err.message);
+        console.log(err);
+
     })
 
 
-// Course.findById("69df20ef9a787c79df4a9f10").populate("students")
-//     .then((res) => {
-//         console.log(res);
-//     }).catch((err) => {
-//         console.log(err.message);
-//     })
-
-app.listen(() => {
+app.listen(process.env.PORT, () => {
     console.log("Server Running");
 
 })
