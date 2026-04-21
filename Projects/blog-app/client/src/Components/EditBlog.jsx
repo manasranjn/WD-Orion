@@ -14,10 +14,10 @@ const EditBlog = () => {
 
   const getPost = () => {
     axios
-      .get(`http://localhost:5000/blogs/${id}`)
+      .get(`http://localhost:5000/api/posts/${id}`)
       .then((res) => {
         setTitle(res.data.title);
-        setDescription(res.data.description);
+        setDescription(res.data.details);
         // console.log(res);
         setError("");
         setMessage("");
@@ -34,11 +34,11 @@ const EditBlog = () => {
 
     const blog = {
       title,
-      description,
+      details: description,
     };
 
     axios
-      .put(`http://localhost:5000/blogs/${id}`, blog)
+      .put(`http://localhost:5000/api/posts/${id}`, blog)
       .then((res) => {
         console.log(res.data);
         setMessage("Post Updated Successfully");
