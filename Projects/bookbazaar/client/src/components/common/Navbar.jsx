@@ -100,11 +100,11 @@ const Navbar = () => {
         {/* Right Section */}
         <div className="hidden lg:flex items-center space-x-6">
           {/* Search */}
-          <input
+          {/* <input
             type="text"
             placeholder="Search books..."
             className="border rounded-lg px-3 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          />
+          /> */}
 
           {/* Cart */}
           <Link to="/cart" className="relative">
@@ -169,7 +169,7 @@ const Navbar = () => {
         {/* Mobile Menu Icon */}
         <div className="lg:hidden">
           <button onClick={() => setMenuOpen(!menuOpen)}>
-            {menuOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
+            {menuOpen ? <FaTimes size={25} /> : <FaBars size={22} />}
           </button>
         </div>
       </div>
@@ -206,6 +206,15 @@ const Navbar = () => {
               <Link to="/cart" onClick={() => setMenuOpen(false)}>
                 Cart
               </Link>
+            </li>
+
+            <li>
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="bg-blue-600 w-full py-2 rounded-md text-white cursor-pointer"
+              >
+                Login
+              </button>
             </li>
           </ul>
         </div>

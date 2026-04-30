@@ -1,13 +1,11 @@
 const Order = require("../models/order");
 const Cart = require("../models/cart");
 
-/**
- PLACE ORDER
-*/
+//! PLACE ORDER
 exports.placeOrder = async (req, res) => {
     try {
         const cart = await Cart.findOne({ userId: req.user.id })
-            .populate("items.bookId"); // 🔥 important
+            .populate("items.bookId"); //? important
 
         if (!cart || cart.items.length === 0) {
             return res.status(400).json({
@@ -54,9 +52,7 @@ exports.placeOrder = async (req, res) => {
 };
 
 
-/**
- USER ORDER HISTORY
-*/
+//! USER ORDER HISTORY
 exports.getUserOrders = async (req, res) => {
     try {
         const orders = await Order.find({ userId: req.user.id })
@@ -79,6 +75,7 @@ exports.getUserOrders = async (req, res) => {
 };
 
 
+//! ADMIN Get All ORDERS
 exports.getAllOrders = async (req, res) => {
     try {
         const orders = await Order.find()
@@ -100,9 +97,7 @@ exports.getAllOrders = async (req, res) => {
 };
 
 
-/**
- ADMIN UPDATE ORDER STATUS
-*/
+//! ADMIN UPDATE ORDER STATUS
 
 exports.updateOrderStatus = async (req, res) => {
     try {

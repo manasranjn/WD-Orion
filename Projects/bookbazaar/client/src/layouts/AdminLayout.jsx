@@ -18,7 +18,7 @@ const AdminLayout = () => {
             Hello {user.name}
           </h1>
 
-          <div className="p-2 bg-gray-300 rounded-full text-gray-600 font-medium">
+          <div className="p-2 cursor-pointer bg-gray-300 rounded-full text-gray-600 font-medium">
             <Link to="/">
               <IoHome />
             </Link>

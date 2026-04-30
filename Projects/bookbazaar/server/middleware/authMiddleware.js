@@ -3,7 +3,6 @@ const User = require("../models/user");
 
 const authMiddleware = async (req, res, next) => {
     try {
-
         let token;
 
         if (req.headers.authorization &&
@@ -18,7 +17,6 @@ const authMiddleware = async (req, res, next) => {
             next();
 
         } else {
-
             return res.status(401).json({
                 success: false,
                 message: "Not authorized, token missing"
@@ -27,7 +25,6 @@ const authMiddleware = async (req, res, next) => {
         }
 
     } catch (error) {
-
         res.status(401).json({
             success: false,
             message: "Invalid token",

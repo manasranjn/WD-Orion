@@ -50,7 +50,6 @@ exports.registerUser = async (req, res) => {
 //! LOGIN USER
 exports.loginUser = async (req, res) => {
     try {
-
         const { email, password } = req.body;
 
         if (!email || !password) {
@@ -154,7 +153,6 @@ exports.updateUserRole = async (req, res) => {
             success: true,
             data: user
         });
-
     } catch (error) {
         res.status(500).json({
             success: false,

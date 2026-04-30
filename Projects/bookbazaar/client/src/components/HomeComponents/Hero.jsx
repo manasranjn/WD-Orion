@@ -4,7 +4,7 @@ import assets from "../../assets/assets.js";
 
 const Hero = () => {
   return (
-    <section className="bg-linear-to-r from-indigo-50 to-purple-100 py-16">
+    <section className="bg-linear-to-r from-indigo-100 to-purple-100 py-16">
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-10">
         {/* Left Content */}
 

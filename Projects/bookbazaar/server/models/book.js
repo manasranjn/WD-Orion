@@ -15,11 +15,15 @@ const bookSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        originalPrice: {
-            type: Number,
-            required: true
-        },
-        sellingPrice: {
+        // originalPrice: {
+        //     type: Number,
+        //     required: true
+        // },
+        // sellingPrice: {
+        //     type: Number,
+        //     required: true
+        // },
+        price: {
             type: Number,
             required: true
         },

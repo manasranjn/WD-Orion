@@ -20,7 +20,7 @@ const FeaturedBooks = () => {
         Featured Books
       </h2>
 
-      <div className="grid md:grid-cols-4 gap-8">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
         {books.slice(0, 4).map((book) => (
           <BookCard key={book._id} book={book} />
         ))}

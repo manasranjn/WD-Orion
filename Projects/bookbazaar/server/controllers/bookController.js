@@ -4,14 +4,13 @@ const Book = require("../models/book");
 exports.createBook = async (req, res) => {
     try {
 
-        const { title, author, description, originalPrice, sellingPrice, category, stock, image } = req.body;
+        const { title, author, description, price, category, stock, image } = req.body;
 
         const book = await Book.create({
             title,
             author,
             description,
-            originalPrice,
-            sellingPrice,
+            price,
             category,
             stock,
             image

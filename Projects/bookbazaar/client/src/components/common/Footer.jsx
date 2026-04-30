@@ -27,7 +27,10 @@ const Footer = () => {
 
           {/* Social Icons */}
           <div className="flex gap-4 mt-4">
-            <a className="bg-gray-800 p-3 rounded-full cursor-pointer hover:bg-indigo-600 transition">
+            <a
+              href="https://www.facebook.com"
+              className="bg-gray-800 p-3 rounded-full cursor-pointer hover:bg-indigo-600 transition"
+            >
               <FaFacebookF />
             </a>
 
@@ -108,12 +111,18 @@ const Footer = () => {
             <IoLocationSharp /> Bhubaneswar, Odisha, India
           </p>
 
-          <p className="hover:text-indigo-400 my-2 flex gap-2 items-center ">
+          <a
+            href="mailto:support@bookbazaar.com"
+            className="hover:text-indigo-400 my-2 flex gap-2 items-center "
+          >
             <IoIosMail /> support@bookbazaar.com
-          </p>
-          <p className="hover:text-indigo-400 flex gap-2 items-center ">
+          </a>
+          <a
+            href="tel:+91 123-456-789"
+            className="hover:text-indigo-400 flex gap-2 items-center "
+          >
             <FaPhoneAlt size={13} /> +91 123-456-789
-          </p>
+          </a>
         </div>
       </div>
 
