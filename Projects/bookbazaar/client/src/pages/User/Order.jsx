@@ -11,12 +11,12 @@ const Order = () => {
 
   const token = localStorage.getItem("token");
 
-  // 🔹 Load cart on mount
+  //? Load cart on mount
   useEffect(() => {
     fetchCart();
   }, []);
 
-  // 🔹 Place Order
+  //! Place Order
   const placeOrder = async () => {
     try {
       if (!token) {
@@ -53,7 +53,7 @@ const Order = () => {
     }
   };
 
-  // 🔹 Safe total calculation
+  //? Safe total calculation
   const totalPrice =
     cart?.items?.reduce((total, item) => {
       const price = item?.bookId?.price || 0;

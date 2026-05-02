@@ -10,7 +10,7 @@ const AllBooks = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // 🔹 Fetch categories
+  //! Fetch categories
   const fetchCategories = async () => {
     try {
       const res = await axios.get("http://localhost:5000/api/categories");
@@ -20,7 +20,7 @@ const AllBooks = () => {
     }
   };
 
-  // 🔹 Fetch books
+  //! Fetch books
   const fetchBooks = async () => {
     try {
       const res = await axios.get("http://localhost:5000/api/books");
@@ -38,7 +38,7 @@ const AllBooks = () => {
     fetchBooks();
   }, []);
 
-  // 🔹 Filter logic
+  //! Filter logic
   useEffect(() => {
     let result = books;
 

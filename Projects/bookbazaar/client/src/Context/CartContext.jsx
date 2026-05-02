@@ -14,17 +14,18 @@ export const CartProvider = ({ children }) => {
     },
   };
 
-  // 🔹 Fetch Cart
+  //! Fetch Cart
   const fetchCart = async () => {
     try {
       const res = await axios.get("http://localhost:5000/api/cart", config);
       setCart(res.data.data);
+      // console.log(res.data.data);
     } catch (error) {
       console.error("Fetch Cart Error:", error);
     }
   };
 
-  // 🔹 Add to Cart
+  //! Add to Cart
   const addToCart = async (bookId, quantity) => {
     try {
       await axios.post(

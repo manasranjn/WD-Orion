@@ -15,7 +15,7 @@ const BookDetails = () => {
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(true);
 
-  // 🔹 Fetch Book + Related Books
+  //! Fetch Book + Related Books
   useEffect(() => {
     const fetchData = async () => {
       try {
